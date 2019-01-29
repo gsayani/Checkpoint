@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t gsayani/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ghanisayani/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run gsayani/react-test npm test -- --coverage
+  - docker run ghanisayani/react-test npm test -- --coverage
 
 after_sucess:
   - docker build -t ghanisayani/multi-client ./client
