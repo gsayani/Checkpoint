@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t gsayani/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run gsayani/react-test npm test -- --coverage
+
+after_sucess:
+  - docker build -t gsayani/multi-client ./client
+  - docker build -t gsayani/multi-nginx ./nginx
+  - docker build -t gsayani/multi-server ./server
+  - docker build -t gsayani/multi-worker ./worker
+# Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+#Take those images and push them to docker hub
+  - docker push gsayani/multi-client
+  - docker push gsayani/multi-nginx 
+  - docker push gsayani/multi-server 
+  - docker push gsayani/multi-worker 
+
