@@ -22,3 +22,15 @@ after_success:
   - docker push ghanisayani/multi-server 
   - docker push ghanisayani/multi-worker 
 
+deploy:
+  provider: elasticbeanstalk
+  region: ca-central-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ca-canada-1-112261284368
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
