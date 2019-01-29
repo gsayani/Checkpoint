@@ -8,7 +8,7 @@ before_install:
 script:
   - docker run ghanisayani/react-test npm test -- --coverage
 
-after_sucess:
+after_success:
   - docker build -t ghanisayani/multi-client ./client
   - docker build -t ghanisayani/multi-nginx ./nginx
   - docker build -t ghanisayani/multi-server ./server
