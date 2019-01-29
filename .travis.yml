@@ -9,16 +9,16 @@ script:
   - docker run gsayani/react-test npm test -- --coverage
 
 after_sucess:
-  - docker build -t gsayani/multi-client ./client
-  - docker build -t gsayani/multi-nginx ./nginx
-  - docker build -t gsayani/multi-server ./server
-  - docker build -t gsayani/multi-worker ./worker
+  - docker build -t ghanisayani/multi-client ./client
+  - docker build -t ghanisayani/multi-nginx ./nginx
+  - docker build -t ghanisayani/multi-server ./server
+  - docker build -t ghanisayani/multi-worker ./worker
 # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 #Take those images and push them to docker hub
-  - docker push gsayani/multi-client
-  - docker push gsayani/multi-nginx 
-  - docker push gsayani/multi-server 
-  - docker push gsayani/multi-worker 
+  - docker push ghanisayani/multi-client
+  - docker push ghanisayani/multi-nginx 
+  - docker push ghanisayani/multi-server 
+  - docker push ghanisayani/multi-worker 
 
